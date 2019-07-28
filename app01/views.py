@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
 from app01 import models
+from django.urls import reverse
 # Create your views here.
 # 展示出版社列表
 def publisher_list(request):
@@ -7,7 +8,7 @@ def publisher_list(request):
     ret = models.Publisher.objects.all().order_by("id")
     return render(request, "publisher_list.html", {"publisher_list": ret})
 
-# 添加新的出版社
+# 添加新的出版社（FBV基于函数的视图）
 def add_publisher(request):
     error_msg = ""
     # 如果是POST请求,我就取到用户填写的数据
@@ -23,6 +24,19 @@ def add_publisher(request):
     # 用户第一次来,我给他返回一个用来填写的HTML页面
     return render(request, "add_publisher.html", {"error": error_msg})
 
+#CBV版 添加新的出版社
+from django.views import View
+# class AddPublisher(View):
+#     def get(self,request):
+#         return render(request,"add_publisher.html")
+#     def post(self,request):
+#         new_name = request.POST.get("publisher_name",None)
+#         if new_name:
+#             models.Publisher.objects.create(name = new_name)
+#             return redirect("/publisher_list/")
+#         else:
+#             error_msg ="出版社名字不能为空"
+#             return render(request,"add_publisher.html",{"error":error_msg})
 
 # 删除出版社的函数
 def delete_publisher(request):
@@ -215,3 +229,13 @@ def edit_author(request):
     # 查询所有的书籍对象
     ret = models.Book.objects.all()
     return render(request, "edit_author.html", {"book_list": ret, "author": edit_author_obj})
+
+
+#测试url的正则表达式
+def book(request,year,title):
+    print(year)
+    print(title)
+    return HttpResponse("哈哈哈 ")
+
+def test(request):
+    return re

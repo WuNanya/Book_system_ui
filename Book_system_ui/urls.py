@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app01 import views
+from django.urls import re_path
 urlpatterns = [
     # 出版社相关的对应关系
     path('publisher_list/', views.publisher_list),
     path('add_publisher/', views.add_publisher),
+    # path('add_publisher/', views.AddPublisher.as_view()),
     path('delete_publisher/', views.delete_publisher),
     path('edit_publisher/', views.edit_publisher),
     # 书相关的对应关系
@@ -32,4 +34,8 @@ urlpatterns = [
     path('add_author/', views.add_author),  # 添加作者
     path('delete_author/', views.delete_author),  # 删除作者
     path('edit_author/', views.edit_author),  # 编辑作者
+
+
+    re_path('^book/(?P<year>[0-9]{2,4})/(?P<title>[a-zA-Z]{2})/$', views.book),  # 编辑作者
+    path('test/',views.test,name="test_name")
 ]
