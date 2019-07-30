@@ -34,3 +34,10 @@ class Author(models.Model):
 
     def __str__(self):
         return "<Author Object: {}>".format(self.name)
+
+
+#test
+class Book(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=32)
+
