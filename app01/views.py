@@ -232,10 +232,10 @@ def edit_author(request):
 
 
 #测试url的正则表达式
-def book(request,year,title):
-    print(year)
-    print(title)
-    return HttpResponse("哈哈哈 ")
-
-def test(request):
-    return re
+# def book(request,year,title):
+#     print(year)
+#     print(title)
+#     return HttpResponse("哈哈哈 ")
+#
+# def test(request):
+#     return re

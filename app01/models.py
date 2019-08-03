@@ -25,19 +25,25 @@ class Book(models.Model):
         return "<Book Object: {}>".format(self.title)
 
 
-# 作者表
+#作者表
 class Author(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=16, null=False, unique=True)
     # 告诉ORM 我这张表和book表是多对多的关联关系,ORM自动帮我生成了第三张表
     book = models.ManyToManyField(to="Book")
+    phone = models.IntegerField()
+    age = models.IntegerField()
+    detail = models.OneToOneField(to='AuthorDetail',on_delete=models.CASCADE)
 
     def __str__(self):
         return "<Author Object: {}>".format(self.name)
 
 
+class AuthorDetail(models.Model):
+    hobby = models.CharField(max_length=32)
+    addr = models.CharField(max_length=128)
 #test
-class Book(models.Model):
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=32)
+# class Book(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     title = models.CharField(max_length=32)
 
