@@ -36,6 +36,5 @@ urlpatterns = [
     path('edit_author/', views.edit_author),  # 编辑作者
 
 
-    # re_path('^book/(?P<year>[0-9]{2,4})/(?P<title>[a-zA-Z]{2})/$', views.book),  # 编辑作者
-    # path('test/',views.test,name="test_name")
+  
 ]
